@@ -1,6 +1,6 @@
 import streamlit as st
 
-# MBTI 정보 사전 (16개 유형 모두 포함)
+# 16가지 MBTI 정보 사전
 mbti_info = {
     "INTJ": {
         "emoji": "🧠",
@@ -98,34 +98,72 @@ ENFJ는 타인과의 관계를 중시하며, 사람들을 이끌고 돕는 데 �
         "best_matches": ["INFP", "ISFJ"],
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/MBTI_ENFJ.png"
     },
-    # 나머지 8개 유형도 추가해 주세요.
-}
-
-# 페이지 설정
-st.set_page_config(page_title="MBTI 성격유형 안내기", page_icon="🧭")
-st.title("🧬 MBTI 성격유형 안내기")
-st.write("MBTI 유형을 선택하시면 자세한 설명, 궁합, 추천 직업, 이미지 등을 보여드립니다!")
-
-# MBTI 선택
-selected_mbti = st.selectbox("당신의 MBTI를 선택하세요!", list(mbti_info.keys()))
-
-if selected_mbti:
-    info = mbti_info[selected_mbti]
-    st.markdown(f"## {info['emoji']} {selected_mbti} - {info['title']}")
-    st.image(info['image_url'], width=250, caption=f"{selected_mbti} 캐릭터")
-    st.markdown("### 📖 성격 설명")
-    st.write(info["description"])
-    st.markdown("### 💡 성격 특성")
-    st.markdown(", ".join(info["traits"]))
-    st.markdown("### 💼 추천 직업")
-    st.markdown(", ".join(info["careers"]))
-
-    # 궁합 출력
-    st.markdown("### ❤️ 궁합이 잘 맞는 MBTI")
-    best_matches = info["best_matches"]
-    for bm in best_matches:
-        if bm in mbti_info:
-            bm_info = mbti_info[bm]
-            st.markdown(f"- {bm_info['emoji']} **{bm} - {bm_info['title']}**")
-
-    st.success("자신의 성향을 이해하고, 관계에 활용해보세요! 😊")
+    "ISTJ": {
+        "emoji": "📚",
+        "title": "현실주의자형",
+        "description": """
+ISTJ는 책임감이 강하고 실용적입니다. 정확하고 꼼꼼하게 일을 처리하며, 규칙과 절차를 중시하는 성격입니다.
+업무를 체계적으로 처리하며, 안정적인 환경에서 잘 활동합니다.
+        """,
+        "traits": ["책임감", "실용적", "세밀한", "보수적"],
+        "careers": ["경영자", "교사", "군인"],
+        "best_matches": ["ESFP", "ESTP"],
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/MBTI_ISTJ.png"
+    },
+    "ISFJ": {
+        "emoji": "🛡️",
+        "title": "수호자형",
+        "description": """
+ISFJ는 헌신적이고 책임감이 강한 성격으로, 타인의 필요를 민감하게 파악하고 조용히 돕습니다.
+전통적인 가치와 조직을 중시하며, 안정적인 환경에서 강점을 발휘합니다.
+        """,
+        "traits": ["책임감", "헌신적", "온화함", "현실적"],
+        "careers": ["간호사", "교사", "사회복지사"],
+        "best_matches": ["ESFP", "ESTP"],
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/MBTI_ISFJ.png"
+    },
+    "ESTJ": {
+        "emoji": "🏛️",
+        "title": "경영자형",
+        "description": """
+ESTJ는 조직적이고 현실적인 성향을 가지고 있습니다. 체계적이고 책임감이 강하며, 업무를 신속하고 효율적으로 처리합니다.
+높은 리더십과 관리 능력을 지니고 있습니다.
+        """,
+        "traits": ["실용적", "리더십", "결단력", "체계적"],
+        "careers": ["경영자", "군인", "공무원"],
+        "best_matches": ["ISFP", "INFP"],
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/MBTI_ESTJ.png"
+    },
+    "ESFJ": {
+        "emoji": "🎀",
+        "title": "집정관형",
+        "description": """
+ESFJ는 다른 사람들을 돕는 데 큰 만족을 느끼며, 사람들과의 관계를 중요하게 생각합니다.
+배려심과 사교성이 뛰어나며, 타인의 감정을 잘 이해합니다.
+        """,
+        "traits": ["사교적", "배려심", "협동적", "친절함"],
+        "careers": ["교사", "간호사", "사회복지사"],
+        "best_matches": ["ISFP", "INFP"],
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/MBTI_ESFJ.png"
+    },
+    "ISTP": {
+        "emoji": "🛠️",
+        "title": "장인형",
+        "description": """
+ISTP는 실용적이고 분석적인 성향을 지니고 있으며, 새로운 도전과 문제 해결을 좋아합니다.
+기술적이고 현실적인 접근을 통해 문제를 해결하는 능력이 뛰어납니다.
+        """,
+        "traits": ["분석적", "냉정함", "실용적", "기술적"],
+        "careers": ["기술자", "정비사", "엔지니어"],
+        "best_matches": ["ESTJ", "ESFJ"],
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/MBTI_ISTP.png"
+    },
+    "ISFP": {
+        "emoji": "🍃",
+        "title": "모험가형",
+        "description": """
+ISFP는 감성적이고 창의적이며, 자유롭고 자연을 사랑하는 성격입니다.
+조용하고 내성적이지만, 자신이 관심 있는 분야에서 빛을 발하는 경향이 있습니다.
+        """,
+        "traits": ["자유로운", "감성적", "창의적", "내성적"],
+        "careers": ["디
