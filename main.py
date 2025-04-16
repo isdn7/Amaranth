@@ -166,4 +166,61 @@ ISFP는 감성적이고 창의적이며, 자유롭고 자연을 사랑하는 성
 조용하고 내성적이지만, 자신이 관심 있는 분야에서 빛을 발하는 경향이 있습니다.
         """,
         "traits": ["자유로운", "감성적", "창의적", "내성적"],
-        "careers": ["디
+        "careers": ["디자이너", "예술가", "사진작가"],
+        "best_matches": ["ESTJ", "ENTP"],
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/MBTI_ISFP.png"
+    },
+    "ESTP": {
+        "emoji": "🏍️",
+        "title": "사업가형",
+        "description": """
+ESTP는 현실적이고 에너지 넘치는 성격으로, 도전적이고 모험적인 삶을 선호합니다.
+즉흥적이며 변화에 잘 적응하고, 다른 사람들과 함께 활동하는 것을 즐깁니다.
+        """,
+        "traits": ["에너지 넘침", "즉흥적", "모험적", "사교적"],
+        "careers": ["영업직", "스포츠 선수", "사업가"],
+        "best_matches": ["ISFJ", "ISTJ"],
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/MBTI_ESTP.png"
+    },
+    "ESFP": {
+        "emoji": "🎉",
+        "title": "연예인형",
+        "description": """
+ESFP는 사교적이고 긍정적인 성격으로, 사람들과 함께 즐기며 살아가는 것을 좋아합니다.
+주변 사람들에게 활력을 주고, 에너지가 넘치는 성격입니다.
+        """,
+        "traits": ["사교적", "유쾌함", "창의적", "열정적"],
+        "careers": ["가수", "배우", "이벤트 기획자"],
+        "best_matches": ["ISTJ", "ISFJ"],
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/72/MBTI_ESFP.png"
+    }
+}
+
+# 페이지 설정
+st.set_page_config(page_title="MBTI 성격유형 안내기", page_icon="🧭")
+st.title("🧬 MBTI 성격유형 안내기")
+st.write("MBTI 유형을 선택하시면 자세한 설명, 궁합, 추천 직업, 이미지 등을 보여드립니다!")
+
+# MBTI 선택
+selected_mbti = st.selectbox("당신의 MBTI를 선택하세요!", list(mbti_info.keys()))
+
+if selected_mbti:
+    info = mbti_info[selected_mbti]
+    st.markdown(f"## {info['emoji']} {selected_mbti} - {info['title']}")
+    st.image(info['image_url'], width=250, caption=f"{selected_mbti} 캐릭터")
+    st.markdown("### 📖 성격 설명")
+    st.write(info["description"])
+    st.markdown("### 💡 성격 특성")
+    st.markdown(", ".join(info["traits"]))
+    st.markdown("### 💼 추천 직업")
+    st.markdown(", ".join(info["careers"]))
+
+    # 궁합 출력
+    st.markdown("### ❤️ 궁합이 잘 맞는 MBTI")
+    best_matches = info["best_matches"]
+    for bm in best_matches:
+        if bm in mbti_info:
+            bm_info = mbti_info[bm]
+            st.markdown(f"- {bm_info['emoji']} **{bm} - {bm_info['title']}**")
+
+    st.success("자신의 성향을 이해하고, 관계에 활용해보세요! 😊")
